@@ -1,0 +1,45 @@
+{
+    "version": "1.0",
+    "name": "Avocado",
+    "manifest_version": 2,
+    "description": "A test Extension, created by Eli.",
+
+    "icons": {
+        "128": "images/get_started128.png",
+        "48": "images/get_started48.png",
+        "32": "images/get_started32.png",
+        "16": "images/get_started16.png"
+    },
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://s.taobao.com/search?*q=*",
+                "https://s.taobao.com/browse/shop_search.htm?*q=*"
+            ],
+            "css": [
+                "css/tool.css",
+                "css/query.css"
+            ],
+            "js": [
+                "js/jquery-1.8.2.min.js",
+                "js/query.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+
+    "background": {
+        "scripts": [
+            "js/jquery-1.8.2.min.js",
+            "js/background.js"
+        ]
+    },
+
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+
+    "permissions": [
+      "http://tmall.kxjf1.com/*",
+      "declarativeContent"
+    ]
+}
