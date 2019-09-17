@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 url: config.httpHome + conf.url,
                 type: conf.type,
                 async: false,
-                data: /*conf.data*/{shopId: '100020780'},
+                data: conf.data /*{shopId: '100020780'}*/ ,
                 dataType: conf.dataType,
                 success: function(data) {
                     sendResponse({
@@ -44,13 +44,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                     })
                 },
                 error: function(data) {
-                    if (data.responseText && data.responseText.indexOf('后台登录') > -1) {} else {
-                        sendResponse({
-                            type: "error",
-                            data: data,
-                            config: config
-                        })
-                    }
+                    sendResponse({
+                        type: "error",
+                        data: data,
+                        config: config
+                    })
                 }
             })
         } else if (retFun.type === 'fake_ajax') {
@@ -68,8 +66,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 })
 
 function loadFakeData(uid) {
-	return {
-		Uid: uid,
+    return {
+        Uid: uid,
         company_name: 'AvocadoEli',
         start_time: '2102-02-30',
         phone: '010-1234509876'

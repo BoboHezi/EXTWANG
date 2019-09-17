@@ -11,25 +11,23 @@
         "16": "images/get_started16.png"
     },
 
-    "content_scripts": [
-        {
-            "matches": [
-                "https://shopsearch.taobao.com/search?*q=*",
-                "https://shopsearch.taobao.com/browse/shop_search.htm?*q=*",
-                "https://s.taobao.com/search?*q=*",
-                "https://s.taobao.com/browse/shop_search.htm?*q=*"
-            ],
-            "css": [
-                "css/tool.css",
-                "css/query.css"
-            ],
-            "js": [
-                "js/jquery-1.8.2.min.js",
-                "js/query.js"
-            ],
-            "run_at": "document_start"
-        }
-    ],
+    "content_scripts": [{
+        "matches": [
+            "https://shopsearch.taobao.com/search?*q=*",
+            "https://shopsearch.taobao.com/browse/shop_search.htm?*q=*",
+            "https://s.taobao.com/search?*q=*",
+            "https://s.taobao.com/browse/shop_search.htm?*q=*"
+        ],
+        "css": [
+            "css/tool.css",
+            "css/query.css"
+        ],
+        "js": [
+            "js/jquery-1.8.2.min.js",
+            "js/query.js"
+        ],
+        "run_at": "document_start"
+    }],
 
     "background": {
         "scripts": [
@@ -38,7 +36,7 @@
         ]
     },
 
-    "page_action": {
+    "browser_action": {
         "default_popup": "popup/popup.html",
         "default_title": "Avocado SignIn",
         "default_icon": {
