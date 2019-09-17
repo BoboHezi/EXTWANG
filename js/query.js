@@ -55,6 +55,9 @@ var query = (listUid) => {
 }
 
 function parseDom(value) {
+    $('.gaohao_info').remove();
+    $('.gaohao_add').remove();
+    $('.gaohao_table').remove();
     value.data.forEach(function(data) {
         var thi = $('#list-container>.list-item .shop-name[trace-uid=' + data.Uid + ']');
         var par = thi.parents('.list-item');
