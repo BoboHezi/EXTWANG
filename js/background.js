@@ -1,7 +1,7 @@
 var saveLoginInfo = null;
 var config = {
     activepage: 'https://s.taobao.com',
-    httpHome: 'https://s.taobao.com'
+    httpHome: 'http://47.99.172.85:8028'
 }
 
 chrome.runtime.onInstalled.addListener(function() {
@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 url: config.httpHome + conf.url,
                 type: conf.type,
                 async: false,
-                data: conf.data,
+                data: /*conf.data*/{shopId: '100020780'},
                 dataType: conf.dataType,
                 success: function(data) {
                     sendResponse({
@@ -57,7 +57,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         } else if (retFun.type === 'fake_ajax') {
             sendResponse({
                 type: "success",
-                data: loadFakeData(retFun.conf.data.listUid),
+                data: loadFakeData(retFun.conf.data.shopId),
                 config: config
             });
         } else if (retFun.type === 'log') {
@@ -68,17 +68,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     }
 })
 
-function loadFakeData(uids) {
-    var data = [];
-    uids.forEach(function(uid) {
-        var ele = {
-            Uid: uid,
-            Company: 'AvocadoEli',
-            RegDate: '2102',
-            Mobile: '19839489304',
-            Phone: '010-3874623'
-        };
-        data.push(ele);
-    });
-    return data;
+function loadFakeData(uid) {
+	return {
+		Uid: uid,
+        company_name: 'AvocadoEli',
+        start_time: '2102-02-30',
+        phone: '010-1234509876'
+    };
 }
