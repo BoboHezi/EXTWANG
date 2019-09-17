@@ -48,7 +48,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                         sendResponse({
                             type: "error",
                             data: data,
-                            info: info,
                             config: config
                         })
                     }
