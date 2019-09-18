@@ -9,11 +9,16 @@
 </head>
 <body>
 
-	<form action="http://47.99.172.85:8028/login/login/">
+	<form id="loginform" action="http://47.99.172.85:8028/login/login/">
 		<input type="text" name="mobile" id="input_number" placeholder="Please input your phone number">
 		<input type="password" name="password" id="input_password" placeholder="Please input your password">
 		<input type="submit" value="Submit" id="input_submit" name="Login">
 	</form>
+
+	<div id="logininfo" hidden="true">
+		<p id="loginmsg"></p>
+		<button id="logout">Logout</button>
+	</div>
 
 </body>
 </html>

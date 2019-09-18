@@ -50,6 +50,10 @@ var query = (listUid) => {
                     type: 'log',
                     log: 'response.data:\n' + JSON.stringify(response.data)
                 }, null);
+                if (response.data && response.data.message == "登陆失效") {
+                    sendMessage({type: 'clear_login'}, null);
+                    return;
+                }
                 parseDom(response.data, uid);
             }
         });

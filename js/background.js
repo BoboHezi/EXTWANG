@@ -57,6 +57,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 data: loadFakeData(retFun.conf.data.shopId),
                 config: config
             });
+        } else if (retFun.type === 'clear_login') {
+            clearlogindata();
         } else if (retFun.type === 'log') {
             console.log(retFun.log);
         }
@@ -72,4 +74,39 @@ function loadFakeData(uid) {
         start_time: '2102-02-30',
         phone: '010-1234509876'
     };
+}
+
+function islogineffective() {
+    var username = sessionStorage.getItem('username');
+    var expre_time = sessionStorage.getItem('expre_time');
+
+    if (username && expre_time) {
+        var expre = new Date(expre_time);
+        var now = new Date();
+        return expre > now;
+    }
+    return false;
+}
+
+function savelogindata(data) {
+    sessionStorage.setItem('username', data.username);
+    sessionStorage.setItem('expre_time', data.expre_time);
+}
+
+function readlogindata() {
+    var username = sessionStorage.getItem('username');
+    var expre_time = sessionStorage.getItem('expre_time');
+
+    if (username && expre_time) {
+        return {
+            'username': username,
+            'expre_time': expre_time
+        }
+    }
+    return null;
+}
+
+function clearlogindata() {
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('expre_time');
 }
