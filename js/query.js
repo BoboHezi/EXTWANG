@@ -69,7 +69,9 @@ function parseDom(data, uid) {
 }
 
 function creatDomStr(data) {
-    var msg = $(`
+    var msg;
+    if (data.message == "查询成功") {
+        msg = $(`
 <div class="gaohao_info"><a target="_blank" href="${data.company_name ? 'https://www.tianyancha.com/search?key=' + data.company_name : 'javascript:;'}">
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAiCAYAAAAzrKu4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjkzNEIzOTkxM0YyQjExRTk4RkIyODUxRjZCODdFMDM3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjkzNEIzOTkyM0YyQjExRTk4RkIyODUxRjZCODdFMDM3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTM0QjM5OEYzRjJCMTFFOThGQjI4NTFGNkI4N0UwMzciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTM0QjM5OTAzRjJCMTFFOThGQjI4NTFGNkI4N0UwMzciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7I0noZAAACTElEQVR42uyYT0gUURzHZ4dFF11KkDAMQkQqwaiwEg8dNv8dU+jgwYOI3VbqVCweEqSgk9Glg1riwToIFd3Wf0cPVvQHQtOLQa1S4Aptm2u4fX/wHRgGZn3P/TOG/uDDvJl9b97Hmffm956+dMjQjeOgH1wDJ4DpUm8HfAOvwD2wptOJT1PsLIhSTidEqhV8yoeYnzc+A9bBIHgHUi71i8B5cBdUgCVQB/7mWqwdvABb7HBRsd1p8AEUgw7wUqWRqfE6LvM4oyFl8EnNsNyg2khHrIzHuKEfVpujOuPGGQFQBUod14/xGATVmmJB2z3qHb8lwCpIuo2xSvAAXKdcIeMPmAS3QcwudhLMU87L+A4awVfrVT6h1E8QBrOq0zoHIQ5XwSM6jIIWeWI1KCyzUhOlvIiQre8amZXneBLzUEpizhpf4mTyw2fwNXodlkPANPZp+B0JOr1fxP6LJ7YCOhXaXADDXG+1gY0MKSzKP74XvFe493OZkU4xSQlvFRp/BPeZXmSx2OdS7yGlfoBxsK1w72Q2r1I6GGA5TIEjtt+lPARu8nxAUWrXJK4Sj8El0E2BG7anLUm6hOUx1i3Y4JfZ20OpOEWukBJeu8U66WwH/17kJL+NMJWd4vUvXBj+ztWs3GuIwOsD8x07FDsUO9BiCdsuyeehi8+2GfolYgtcKZQrri7yFZ10EJcFP7dME6ALPAW1YCrbL7dGSAprBnd4/kzW/ta+Urbu0+Cix0PrDSU3rcG/yQQcAZ8z/GspH5FinxE6iIvxT4ABALtsekngv+jCAAAAAElFTkSuQmCC">公司名称(点击查看)<span>${data.company_name && data.company_name != 'null' ? data.company_name : '---'}</span>
 </a>
@@ -85,5 +87,8 @@ function creatDomStr(data) {
     <p></p>
     <p>邮箱: ${data.mail} 注册资金: ${data.regist_cost} 店铺名称: ${data.shop_name} 法人: ${data.boss_name} 注册号: ${data.regist_num} 位置: ${data.positon} 社会信用代码: ${data.credit_code} 公司状态: ${data.company_status}</p>
 </div>`)
+    } else {
+        msg = $(`<div class="gaohao_info err">${data.message}<div></div></div>`);
+    }
     return msg;
 }

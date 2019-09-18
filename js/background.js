@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 url: config.httpHome + conf.url,
                 type: conf.type,
                 async: false,
-                data: conf.data /*{shopId: '100020780'}*/ ,
+                data: conf.data,
                 dataType: conf.dataType,
                 success: function(data) {
                     sendResponse({
